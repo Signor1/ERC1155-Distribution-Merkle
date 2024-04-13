@@ -73,7 +73,7 @@ contract ERC1155MerkleTest is Test {
         merkle.claim(user.user, user.amount, user.tokenId, result.proof);
     }
 
-    function testIncorrectProof() public {
+    function testForIncorrectProof() public {
         bytes32[] memory fakeProofleaveitleaveit;
 
         vm.expectRevert("not whitelisted");
