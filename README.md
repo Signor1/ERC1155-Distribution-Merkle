@@ -1,66 +1,70 @@
-## Foundry
+# ERC1155 Distribution Contract with Merkle Tree Verification
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project implements an ERC1155 distribution contract with qualification based on Merkle tree verification. Only verified addresses as part of the Merkle tree receive the token, and Merkle proofs are used for verification.
 
-Foundry consists of:
+## Features
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- ERC1155 standard compliant distribution contract.
+- Qualification based on Merkle tree verification.
+- Off-chain Merkle tree and verification using JavaScript.
+- Support for distributing tokens to multiple addresses.
 
-## Documentation
+## Getting Started
 
-https://book.getfoundry.sh/
+To get started with this project, follow these steps:
 
-## Usage
+1. Clone the repository:
 
-### Build
-
-```shell
-$ forge build
+```
+git clone https://github.com/Signor1/ERC1155-Distribution-Merkle.git
 ```
 
-### Test
+2. Install dependencies:
 
-```shell
-$ forge test
+```
+cd your_repository
+npm install
 ```
 
-### Format
+3. Compile the contracts:
 
-```shell
-$ forge fmt
+```
+forge build
 ```
 
-### Gas Snapshots
+4. Deploy the contracts:
 
-```shell
-$ forge snapshot
+```
+forge create --rpc-url <your_rpc_url> --private-key <your_private_key> src/MyContract.sol:MyContract
 ```
 
-### Anvil
+5. Use the provided JavaScript scripts to generate Merkle tree data and verify addresses.
 
-```shell
-$ anvil
+## Data Generation and Merkle Root Creation
+
+I utilized a custom script to generate 500 Ethereum addresses along with corresponding amounts and token IDs. This data was then used to create a Merkle tree, from which the Merkle root was derived. The Merkle root is utilized for Merkle proof verification to qualify addresses for token distribution.
+
+To replicate the process, follow these steps:
+
+1. Run the script to generate the data:
+
+```
+ts-node scripts/generateData.ts
 ```
 
-### Deploy
+2. Use the generated data to create the Merkle root:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
+ts-node scripts/generateTree.ts
 ```
 
-### Cast
+This will output the Merkle root hash, which is necessary for the verification process.
 
-```shell
-$ cast <subcommand>
-```
 
-### Help
+## Contributing
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Contributions are welcome! Feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
