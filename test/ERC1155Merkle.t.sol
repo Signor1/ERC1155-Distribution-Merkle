@@ -67,7 +67,7 @@ contract ERC1155MerkleTest is Test {
         assertTrue(success);
     }
 
-    function testAlreadyClaimed() public {
+    function testWhetherAlreadyClaimed() public {
         merkle.claim(user.user, user.amount, user.tokenId, result.proof);
         vm.expectRevert("already claimed");
         merkle.claim(user.user, user.amount, user.tokenId, result.proof);
