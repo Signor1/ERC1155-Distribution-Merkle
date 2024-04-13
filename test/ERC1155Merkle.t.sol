@@ -57,7 +57,7 @@ contract ERC1155MerkleTest is Test {
         console2.logBytes32(result.leaf);
     }
 
-    function testClaimed() public {
+    function testForSuccessfulClaimed() public {
         bool success = merkle.claim(
             user.user,
             user.amount,
